@@ -1,3 +1,5 @@
+package slide5
+
 import scala.compiletime.{ error, codeOf }
 
 sealed trait OneOrTwo {
