@@ -27,7 +27,7 @@ object OneOrTwo {
         }
 
     // better but not ideal:
-    inline def inlinedFrom3(s: String): OneOrTwo = {
+    inline def inlinedFrom2(s: String): OneOrTwo = {
         inline s match {
             case One.code => One
             case Two.code => Two
@@ -35,15 +35,14 @@ object OneOrTwo {
         }
     }
 
-    // would be ideal but doesn't work:
-    inline def inlinedFrom2(s: String): OneOrTwo = {
-        from(s).getOrElse(error("can't make a OneOrTwo out of " + codeOf(s)))
-    }
-   
-    val test3 = OneOrTwo.inlinedFrom3("one") 
+    val test3 = OneOrTwo.inlinedFrom2("one") 
     // val test4 = OneOrTwo.inlinedFrom3("three") // doesn't compile as expected
 
+    // would be ideal but doesn't work:
+    // inline def inlinedFrom3(s: String): OneOrTwo = {
+    //     from(s).getOrElse(error("can't make a OneOrTwo out of " + codeOf(s)))
+    // }
     // and I can't make this work
-    // val test2 = OneOrTwo.inlinedFrom2("one") // doesn't compile -> can't make a OneOrTwo out of "one"
+    // val test2 = OneOrTwo.inlinedFrom3("one") // doesn't compile -> can't make a OneOrTwo out of "one"
 
 }
