@@ -1,5 +1,9 @@
 package slide2
 
+
+// the by-name and inline types of the parameters don't matter too much here
+// although the inline one is new: it doesn't not create a binding and the
+// code is thus duplicated everywhere it's used
 inline def logged[T](level: Int, message: => String)(inline op: T): T =
     println(s"[$level]Computing $message")
     val res = op
